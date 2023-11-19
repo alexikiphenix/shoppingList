@@ -53,18 +53,18 @@ const App = () => {
               onPress={ submitHandler }
             />
         </View>
-        {/* <FlatList
+        <FlatList
           data={ productsList }
-          renderItem={ ({item}) => <Text style= { styles.element }> { product } </Text>}
-        /> */}
-        <ScrollView>
+          renderItem={ ({item}) => <Text style= { styles.element }> { product.name } </Text>}
+        />
+        {/* <ScrollView>
           <View style={ styles.items }>
             {
               productsList.map((product, index) => 
               <Text style= { styles.element } key={ index }> { product } </Text>)
             }
           </View>
-        </ScrollView>
+        </ScrollView> */}
     </View>
   );
 }
