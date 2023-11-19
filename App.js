@@ -12,7 +12,9 @@ import {
   Text,
   TextInput,
   View,
-  Button
+  Button,
+  ScrollView,
+  FlatList
 } from 'react-native';
 
 
@@ -27,7 +29,13 @@ const App = () => {
 
   const submitHandler = () =>
   {
-    console.log(product);
+    // spread operator pour créer un tableau à la voléee
+    const id = Date.now().toString();
+    setProductsList(currentProductsList => 
+      [{key: id, name: product }, ...currentProductsList]
+      )      
+    setProduct('');
+    console.log(productsList);
   }
   return (
     <View style={styles.container}>
@@ -45,6 +53,18 @@ const App = () => {
               onPress={ submitHandler }
             />
         </View>
+        {/* <FlatList
+          data={ productsList }
+          renderItem={ ({item}) => <Text style= { styles.element }> { product } </Text>}
+        /> */}
+        <ScrollView>
+          <View style={ styles.items }>
+            {
+              productsList.map((product, index) => 
+              <Text style= { styles.element } key={ index }> { product } </Text>)
+            }
+          </View>
+        </ScrollView>
     </View>
   );
 }
@@ -57,6 +77,7 @@ const styles = StyleSheet.create(
     },
     inputContainer: {
       flexDirection: "row",
+      marginBottom: 12,
     },
     textInput :{
       flexGrow: 1,
@@ -66,6 +87,17 @@ const styles = StyleSheet.create(
       paddingLeft: 8,
       fontSize: 15,
     },
+    items: {
+      marginTop: 12,
+      color: 'red'
+    },
+    element: {
+      backgroundColor: '#E06F12',
+      marginVertical: 5,
+      padding: 18,
+      fontSize: 15,
+    }
+
   }
 )
 
